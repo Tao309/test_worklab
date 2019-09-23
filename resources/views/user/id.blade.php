@@ -2,15 +2,12 @@
 @section('content')
     <div class="container">
         <div class="content">
-            <h1>Продукт: {{$product->title}}</h1>
+            <h1>Пользователь {{$user->name}}</h1>
 
             <table>
                 <tr>
-                    <td>Категория:</td>
-                    <td>
-                        {{$product->category->title}}
-
-                    </td>
+                    <td>Email:</td>
+                    <td>{{$user->email}}</td>
                 </tr>
             </table>
         </div>
