@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+Route::group([
+    'namespace' => 'Shop',
+    //'prefix' => 'shop',
+], function () {
+    Route::resource('categories', 'ProductCategoryController')->names('shop.categories');
+    Route::resource('products', 'ProductController')->names('shop.products');
+});
+
