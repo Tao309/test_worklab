@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 abstract class ApiController extends Controller
 {
@@ -40,6 +41,11 @@ abstract class ApiController extends Controller
     }
     public function create(Request $request)
     {
+        if(Auth::guest())
+        {
+            return $this->sendError('Not Authorized', 404);
+        }
+
         $data = $request->input();
 
         $result = $this->model->create($data);
@@ -48,6 +54,11 @@ abstract class ApiController extends Controller
     }
     public function update(Request $request, int $id)
     {
+        if(Auth::guest())
+        {
+            return $this->sendError('Not Authorized', 404);
+        }
+
         $entity = $this->model->find($id);
 
         if(empty($entity))
@@ -65,6 +76,11 @@ abstract class ApiController extends Controller
     }
     public function delete(int $id)
     {
+        if(Auth::guest())
+        {
+            return $this->sendError('Not Authorized', 404);
+        }
+
         $entity = $this->model->find($id);
 
         if(empty($entity))

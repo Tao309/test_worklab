@@ -19,6 +19,8 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        $data['password'] = bcrypt($request->password);
+
         $user = User::create($data);
 
         $accessToken = $user->createToken('authToken')->accessToken;
