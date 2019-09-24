@@ -29,11 +29,28 @@ Route::group([
     Route::delete('/{id}', ['uses' => 'CategoryController@delete'])->where(['id' => '[0-9]+']);
 });
 
-Route::prefix('/products')->group(function () {
 
+Route::group([
+    'namespace' => 'Api',
+    'prefix' => 'products',
+], function () {
+    Route::get('/', ['uses' => 'ProductController@index']);
+
+    Route::get('/{id}', ['uses' => 'ProductController@show'])->where(['id' => '[0-9]+']);
+    Route::post('/', ['uses' => 'ProductController@create']);
+    Route::put('/{id}', ['uses' => 'ProductController@update'])->where(['id' => '[0-9]+']);
+    Route::delete('/{id}', ['uses' => 'ProductController@delete'])->where(['id' => '[0-9]+']);
 });
 
 
-Route::prefix('/users')->group(function () {
+Route::group([
+    'namespace' => 'Api',
+    'prefix' => 'users',
+], function () {
+    Route::get('/', ['uses' => 'UserController@index']);
 
+    Route::get('/{id}', ['uses' => 'UserController@show'])->where(['id' => '[0-9]+']);
+    Route::post('/', ['uses' => 'UserController@create']);
+    Route::put('/{id}', ['uses' => 'UserController@update'])->where(['id' => '[0-9]+']);
+    Route::delete('/{id}', ['uses' => 'UserController@delete'])->where(['id' => '[0-9]+']);
 });
