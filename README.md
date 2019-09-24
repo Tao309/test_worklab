@@ -12,6 +12,7 @@ header-api-key = token123456
 
 .env: API_TOKEN=token123456
 
+
 /api/v1/auth/register
 
 Add header: Accept - application/json
