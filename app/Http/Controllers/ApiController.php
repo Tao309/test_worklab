@@ -65,7 +65,7 @@ abstract class ApiController extends Controller
     {
         $entity = $this->model->find($id);
 
-        if(!$entity)
+        if(empty($entity))
         {
             return $this->sendError(self::RESPONSE_NOT_FOUND, 404);
         }

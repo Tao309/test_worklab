@@ -98,7 +98,7 @@ class ProductCategoryController extends Controller
             return redirect()->route('shop.categories.index');
         }
 
-        $category = ProductCategory::find( $id);
+        $category = ProductCategory::find($id);
 
         return view('shop.category.edit', compact('category'));
     }
