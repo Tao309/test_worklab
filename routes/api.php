@@ -55,3 +55,12 @@ Route::group([
     Route::put('/{id}', ['uses' => 'UserController@update'])->where(['id' => '[0-9]+']);
     Route::delete('/{id}', ['uses' => 'UserController@delete'])->where(['id' => '[0-9]+']);
 });
+
+Route::group([
+    'namespace' => 'Api',
+    'prefix' => 'auth',
+], function () {
+    Route::post('/register', ['uses' => 'AuthController@register']);
+    Route::post('/login', ['uses' => 'AuthController@login']);
+
+});
