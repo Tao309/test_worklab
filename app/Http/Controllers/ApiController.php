@@ -40,7 +40,9 @@ abstract class ApiController extends Controller
     }
     public function create(Request $request)
     {
-        $result = null;
+        $data = $request->input();
+
+        $result = $this->model->create($data);
 
         return $this->sendReponse($result, self::RESPONSE_OK, 201);
     }
