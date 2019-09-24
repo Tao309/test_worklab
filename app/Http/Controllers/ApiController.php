@@ -29,14 +29,14 @@ abstract class ApiController extends Controller
     }
     public function show(int $id)
     {
-        $entity = $this->model->find($id)->first();
+        $entity = $this->model->find($id);
 
-        if(!$entity)
+        if(empty($entity))
         {
-            $this->sendError(self::RESPONSE_NOT_FOUND, 404);
+            return $this->sendError(self::RESPONSE_NOT_FOUND, 404);
         }
 
-        $this->sendReponse($entity, self::RESPONSE_OK, 200);
+        return $this->sendReponse($entity, self::RESPONSE_OK, 200);
     }
     public function create(Request $request)
     {
@@ -46,11 +46,11 @@ abstract class ApiController extends Controller
     }
     public function update(Request $request, int $id)
     {
-        $entity = $this->model->find($id)->first();
+        $entity = $this->model->find($id);
 
-        if(!$entity)
+        if(empty($entity))
         {
-            $this->sendError(self::RESPONSE_NOT_FOUND, 404);
+            return $this->sendError(self::RESPONSE_NOT_FOUND, 404);
         }
 
         $data = $request->validated();
@@ -65,7 +65,7 @@ abstract class ApiController extends Controller
 
         if(!$entity)
         {
-            $this->sendError(self::RESPONSE_NOT_FOUND, 404);
+            return $this->sendError(self::RESPONSE_NOT_FOUND, 404);
         }
 
         $entity->delete();
