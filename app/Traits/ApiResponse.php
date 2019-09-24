@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 trait ApiReponse {
-    public function sendReponse($result, $message, $code)
+    public function sendReponse($result = null, $message, $code)
     {
         return response()->json(self::makeResponse($message, $result), $code);
     }

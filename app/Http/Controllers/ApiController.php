@@ -55,11 +55,13 @@ abstract class ApiController extends Controller
             return $this->sendError(self::RESPONSE_NOT_FOUND, 404);
         }
 
-        $data = $request->validated();
+        $data = $request->input();
+        $entity->fill($data)->push();
 
-        $this->model->fill($data)->push();
+//        $data = $request->all();
+//        $result = $entity->update($data);
 
-        return $this->sendReponse(null, self::RESPONSE_UPDATED, 204);
+        return $this->sendReponse(null, self::RESPONSE_UPDATED, 200);//204
     }
     public function delete(int $id)
     {
