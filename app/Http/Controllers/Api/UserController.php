@@ -7,4 +7,9 @@ class CategoryController extends \App\Http\Controllers\ApiController
     {
         $this->model = $model;
     }
+
+    public function delete(int $id)
+    {
+        return $this->sendError(self::RESPONSE_NOT_FOUND, 404);
+    }
 }
