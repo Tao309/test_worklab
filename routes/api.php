@@ -17,7 +17,10 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::prefix('/categories')->group(function () {
+Route::group([
+    'namespace' => 'Api',
+    'prefix' => 'categories',
+], function () {
     Route::get('/', ['uses' => 'CategoryController@index']);
 
     Route::get('/{id}', ['uses' => 'CategoryController@show'])->where(['id' => '[0-9]+']);
