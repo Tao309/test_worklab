@@ -4,9 +4,16 @@
 
 ## Проверка
 Выполнить:<br/>
-php artisan migrate --seed<br/>
-Данные учётки админа:<br/>
-admin@gmail.com - 123456<br/>
+php artisan migrate --seed
+
+Данные учётки админа:
+
+admin@gmail.com - 123456
+
+header-api-key = token123456
+
+.env: API_TOKEN=token123456
+
 
 Без проверки полей.<br/>
 Редактирование и получение моделей без репозитория, сразу как есть, для быстроты создания.<br/>
