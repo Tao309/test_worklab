@@ -24,6 +24,7 @@ Route::group([
     Route::get('/', ['uses' => 'CategoryController@index']);
 
     Route::get('/{id}', ['uses' => 'CategoryController@show'])->where(['id' => '[0-9]+']);
+    Route::get('/{id}/products', ['uses' => 'CategoryController@showProducts'])->where(['id' => '[0-9]+']);
     Route::post('/', ['uses' => 'CategoryController@create']);
     Route::put('/{id}', ['uses' => 'CategoryController@update'])->where(['id' => '[0-9]+']);
     Route::delete('/{id}', ['uses' => 'CategoryController@delete'])->where(['id' => '[0-9]+']);
