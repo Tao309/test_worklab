@@ -16,6 +16,15 @@ php artisan migrate --seed
 
 Add header: Accept - application/json
 
+
+- Using Bearer Authorization for:
+
+/api/v1/categories/ (crerate, update, delete)
+
+/api/v1/products/ (crerate, update, delete)
+
+
+
 # Тестовое задание на вакансию php разработчика в компанию WorkLab
 Необходимо спроектировать простейшее REST API для каталога товаров.
 
