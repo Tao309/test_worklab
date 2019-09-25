@@ -8,7 +8,9 @@ php artisan migrate --seed
 Без проверки полей.
 Редактирование и получение моделей без репозитория, сразу как есть, для быстроты создания.
 
-- header-api-key = token123456
+- Add header value
+
+header-api-key = token123456
 
 - .env: API_TOKEN=token123456
 
