@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 abstract class ApiController extends Controller
 {
-    use \App\Traits\ApiReponse;
+    use \App\Traits\ApiReponse, \App\Traits\AuthCheck;
 
     CONST RESPONSE_OK = 'OK';
     CONST RESPONSE_UPDATED = 'Updated';
@@ -41,9 +41,9 @@ abstract class ApiController extends Controller
     }
     public function create(Request $request)
     {
-        if(Auth::guest())
+        if($dismissGuest = $this->dismissGuest())
         {
-            return $this->sendError('Not Authorized', 404);
+            return $dismissGuest;
         }
 
         $data = $request->input();
@@ -54,9 +54,9 @@ abstract class ApiController extends Controller
     }
     public function update(Request $request, int $id)
     {
-        if(Auth::guest())
+        if($dismissGuest = $this->dismissGuest())
         {
-            return $this->sendError('Not Authorized', 404);
+            return $dismissGuest;
         }
 
         $entity = $this->model->find($id);
@@ -72,13 +72,13 @@ abstract class ApiController extends Controller
 //        $data = $request->all();
 //        $result = $entity->update($data);
 
-        return $this->sendReponse(null, self::RESPONSE_UPDATED, 200);//204
+        return $this->sendReponse($entity, self::RESPONSE_UPDATED, 200);//204
     }
     public function delete(int $id)
     {
-        if(Auth::guest())
+        if($dismissGuest = $this->dismissGuest())
         {
-            return $this->sendError('Not Authorized', 404);
+            return $dismissGuest;
         }
 
         $entity = $this->model->find($id);
@@ -90,6 +90,6 @@ abstract class ApiController extends Controller
 
         $entity->delete();
 
-        return $this->sendReponse(null, self::RESPONSE_DELETED, 204);
+        return $this->sendReponse('', self::RESPONSE_DELETED, 204);
     }
 }
