@@ -53,4 +53,9 @@ class AuthController extends Controller
 
         return $this->sendReponse($result, 'Authorized', 200);
     }
+
+    public function detail()
+    {
+        return 'Access by authorized!';
+    }
 }

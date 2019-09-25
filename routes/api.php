@@ -25,9 +25,6 @@ Route::group([
 
     Route::get('/{id}', ['uses' => 'CategoryController@show'])->where(['id' => '[0-9]+']);
     Route::get('/{id}/products', ['uses' => 'CategoryController@showProducts'])->where(['id' => '[0-9]+']);
-    Route::post('/', ['uses' => 'CategoryController@create']);
-    Route::put('/{id}', ['uses' => 'CategoryController@update'])->where(['id' => '[0-9]+']);
-    Route::delete('/{id}', ['uses' => 'CategoryController@delete'])->where(['id' => '[0-9]+']);
 });
 
 
@@ -38,9 +35,6 @@ Route::group([
     Route::get('/', ['uses' => 'ProductController@index']);
 
     Route::get('/{id}', ['uses' => 'ProductController@show'])->where(['id' => '[0-9]+']);
-    Route::post('/', ['uses' => 'ProductController@create']);
-    Route::put('/{id}', ['uses' => 'ProductController@update'])->where(['id' => '[0-9]+']);
-    Route::delete('/{id}', ['uses' => 'ProductController@delete'])->where(['id' => '[0-9]+']);
 });
 
 
@@ -62,5 +56,16 @@ Route::group([
 ], function () {
     Route::post('/register', ['uses' => 'AuthController@register']);
     Route::post('/login', ['uses' => 'AuthController@login']);
+});
 
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/userDetail', ['uses' => 'Api\AuthController@detail']);
+
+    Route::post('/', ['uses' => 'Api\CategoryController@create']);
+    Route::put('/{id}', ['uses' => 'Api\CategoryController@update'])->where(['id' => '[0-9]+']);
+    Route::delete('/{id}', ['uses' => 'Api\CategoryController@delete'])->where(['id' => '[0-9]+']);
+
+    Route::post('/', ['uses' => 'Api\ProductController@create']);
+    Route::put('/{id}', ['uses' => 'Api\ProductController@update'])->where(['id' => '[0-9]+']);
+    Route::delete('/{id}', ['uses' => 'Api\ProductController@delete'])->where(['id' => '[0-9]+']);
 });
